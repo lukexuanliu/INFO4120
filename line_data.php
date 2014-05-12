@@ -12,7 +12,7 @@
     }
 
     $BSSID1 = "9c:1c:12:e0:dd:d0";
-    $result_1 = mysql_query("SELECT * FROM wifi WHERE BSSID = '$BSSID1' ORDER BY id desc",$con);
+    $result_1 = mysql_query("SELECT * FROM wifi WHERE BSSID = '$BSSID1' ORDER BY id asc LIMIT 19",$con);
 
     $data = array();
 
@@ -20,7 +20,7 @@
       $data[] = $row;
   }
 
-    print json_encode($data);
+  print json_encode($data);
   }else{
     print 'error';
   }
