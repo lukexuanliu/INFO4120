@@ -11,7 +11,7 @@
       die('Could not connect: ' . mysql_error());
     }
 
-    $BSSID1 = "9c:1c:12:e0:c8:d0";
+    $BSSID1 = "9c:1c:12:e0:dd:d0";
     $result_1 = mysql_query("SELECT * FROM wifi WHERE BSSID = '$BSSID1' ORDER BY id desc",$con);
 
     $data = array();
