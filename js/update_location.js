@@ -1,12 +1,123 @@
 $( document ).ready(function() {
     
+    //map
     train_localization();
     update_location();
 
     setInterval(function(){
+      d3.select("circle").remove();
+      d3.select("text").remove();
       update_location();
     },5000);
-});
+    //map
+
+    var dataStore = (function(){
+      var result = [{level:0}]; 
+
+      path = "./line_data.php";
+
+      $.ajax({
+        url: path,
+        type: 'post',
+        data: {'post': 'true'},
+        success: function(data, status) {
+          var data = eval('(' + data + ')');
+          result = data;
+        },
+        error: function(xhr, desc, err) {
+          console.log(xhr);
+          console.log("Details: " + desc + "\nError:" + err);
+        }
+      }); // end ajax call
+
+      return {getData : function()
+      {
+          if (result) return result;
+          else{ console.log("ERRORROROROROOROROROR");}
+          // else show some error that it isn't loaded yet;
+      }};
+    })();
+
+    //line graph
+          Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+    
+        var chart;
+        $('#line_graph').highcharts({
+            chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                events: {
+                    load: function() {
+    
+                        // set up the updating of the chart each second
+                        var series = this.series[0];
+                        setInterval(function() {
+                            //data = get_data_for_linegraph();
+                            console.log("=============");
+                            console.log(dataStore.getData()[0].level);
+                            var y = parseInt(dataStore.getData()[0].level);
+                            var x = (new Date()).getTime(), // current time
+                                y = y;
+                            series.addPoint([x, y], true, true);
+                        }, 1000);
+                    }
+                }
+            },
+            title: {
+                text: 'Live random data'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'Random data',
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+                    var y = parseInt(dataStore.getData()[0].level);
+                    for (i = -19; i <= 0; i++) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: y
+                        });
+                    }
+                    return data;
+                })()
+            }]
+        });
+    
+    });
 
 
 function update_location(){
@@ -124,5 +235,22 @@ function change_location_of_user(room_number){
       .attr("y", yCoordinate + 5)
       .text("Android");
 
+}
+
+function get_data_for_linegraph(){
+  var path = "./line_data.php"; 
+    $.ajax({
+      url: path,
+      type: 'post',
+      data: {'post': 'true'},
+      success: function(data, status) {
+        var data = eval('(' + data + ')');
+        all_data = data;
+      },
+      error: function(xhr, desc, err) {
+        console.log(xhr);
+        console.log("Details: " + desc + "\nError:" + err);
+      }
+    }); // end ajax call
 }
 

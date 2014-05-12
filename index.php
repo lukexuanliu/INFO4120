@@ -64,6 +64,9 @@
 
       <div id="map">
 
+      <div id="line_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
       </div>
     </div><!-- /.container -->
 
@@ -75,6 +78,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/update_location.js"></script>
     <script src="js/d3.v3.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
   </body>
 </html>
 
@@ -92,5 +97,11 @@
         .attr('width', width)
         .attr('height', height)
         .attr("xlink:href","firstfloor.jpg");
+
+  
+    var all_data = [{level:0}];
+
+
+
 
 </script>
