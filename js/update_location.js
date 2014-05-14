@@ -170,6 +170,7 @@ function get_data_for_linegraph(){
     }
 
     function plugin_line_graph(new_data){
+      new_data.reverse();
       //line graph
           Highcharts.setOptions({
             global: {
