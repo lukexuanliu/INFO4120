@@ -12,7 +12,7 @@
     }
 
     $BSSID1 = "9c:1c:12:e0:dd:d0";
-    $result_1 = mysql_query("SELECT * FROM wifi WHERE BSSID = '$BSSID1' ORDER BY id desc LIMIT 19",$con);
+    $result_1 = mysql_query("SELECT * FROM wifi WHERE BSSID = '$BSSID1' ORDER BY id desc LIMIT 20",$con);
 
     $data = array();
 

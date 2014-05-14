@@ -6,7 +6,10 @@ $( document ).ready(function() {
     update_location();
 
     setInterval(function(){
-      ajax_line_graph(plugin_line_graph);
+        ajax_line_graph(plugin_line_graph);
+    }, 5000);
+
+    setInterval(function(){
       d3.select("circle").remove();
       d3.select("text").remove();
       update_location();
@@ -227,6 +230,7 @@ function get_data_for_linegraph(){
                     //var y = parseInt(new_data[0].level);
                     var j = new_data.length - 20;
                     for (i = -19; i <= 0; i++) {
+                      console.log("j: " + j);
                       var y = 0;
                       if(j >= 0){
                         y = parseInt(new_data[j].level);
