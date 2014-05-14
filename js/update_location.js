@@ -232,7 +232,6 @@ function get_data_for_linegraph(){
                     //var y = parseInt(new_data[0].level);
                     var j = new_data1.length - 20;
                     for (i = -19; i <= 0; i++) {
-                      console.log("j: " + j);
                       var y = 0;
                       if(j >= 0){
                         y = parseInt(new_data1[j].level);
@@ -256,7 +255,6 @@ function get_data_for_linegraph(){
                     //var y = parseInt(new_data[0].level);
                     var j = new_data2.length - 20;
                     for (i = -19; i <= 0; i++) {
-                      console.log("j: " + j);
                       var y = 0;
                       if(j >= 0){
                         y = parseInt(new_data2[j].level);
@@ -280,7 +278,6 @@ function get_data_for_linegraph(){
                     //var y = parseInt(new_data[0].level);
                     var j = new_data3.length - 20;
                     for (i = -19; i <= 0; i++) {
-                      console.log("j: " + j);
                       var y = 0;
                       if(j >= 0){
                         y = parseInt(new_data3[j].level);
