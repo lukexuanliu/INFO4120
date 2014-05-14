@@ -173,7 +173,9 @@ function get_data_for_linegraph(){
     }
 
     function plugin_line_graph(new_data){
-      new_data.reverse();
+      new_data1 = new_data[0].reverse();
+      new_data2 = new_data[1].reverse();
+      new_data3 = new_data[2].reverse();
       //line graph
           Highcharts.setOptions({
             global: {
@@ -189,7 +191,7 @@ function get_data_for_linegraph(){
                 marginRight: 10,
             },
             title: {
-                text: 'Signal Strenght BSSID: ' + new_data[0].BSSID
+                text: 'Signal Strenghts'
             },
             xAxis: {
                 type: 'datetime',
@@ -220,7 +222,7 @@ function get_data_for_linegraph(){
                 enabled: false
             },
             series: [{
-                name: 'Signal Strenght BSSID: ' + new_data[0].BSSID,
+                name: 'Signal Strenght BSSID: ' + new_data1[0].BSSID,
                 data: (function() {
                     // generate an array of random data
                     var data = [],
@@ -228,12 +230,60 @@ function get_data_for_linegraph(){
                         i;
 
                     //var y = parseInt(new_data[0].level);
-                    var j = new_data.length - 20;
+                    var j = new_data1.length - 20;
                     for (i = -19; i <= 0; i++) {
                       console.log("j: " + j);
                       var y = 0;
                       if(j >= 0){
-                        y = parseInt(new_data[j].level);
+                        y = parseInt(new_data1[j].level);
+                      }
+                        data.push({
+                            x: time + i * 1000,
+                            y: y
+                        });
+                      j++;
+                    }
+                    return data;
+                })()
+            }, {
+                name: 'Signal Strenght BSSID: ' + new_data2[0].BSSID,
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    //var y = parseInt(new_data[0].level);
+                    var j = new_data2.length - 20;
+                    for (i = -19; i <= 0; i++) {
+                      console.log("j: " + j);
+                      var y = 0;
+                      if(j >= 0){
+                        y = parseInt(new_data2[j].level);
+                      }
+                        data.push({
+                            x: time + i * 1000,
+                            y: y
+                        });
+                      j++;
+                    }
+                    return data;
+                })()
+            }, {
+                name: 'Signal Strenght BSSID: ' + new_data3[0].BSSID,
+                data: (function() {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    //var y = parseInt(new_data[0].level);
+                    var j = new_data3.length - 20;
+                    for (i = -19; i <= 0; i++) {
+                      console.log("j: " + j);
+                      var y = 0;
+                      if(j >= 0){
+                        y = parseInt(new_data3[j].level);
                       }
                         data.push({
                             x: time + i * 1000,
