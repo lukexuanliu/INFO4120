@@ -12,8 +12,9 @@ def read_from_file(fileDir):
 			nums = line.split(',')
 			if nums:
 				nums = [float(i) for i in nums]
-				rss.append(nums[0:-1])
-				label.append(nums[-1])
+                if nums[-1] >= 0: #only if the label is valid
+				    rss.append(nums[0:-1])
+				    label.append(nums[-1])
 	return {'rss':rss, 'label':label}
 
 
