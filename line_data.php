@@ -14,9 +14,9 @@
     $final_data = array();
 
     /*the three BSSID we wish to show in the signal strenght line graph*/
-    $BSSID1 = "9c:1c:12:e0:dd:d0";
-    $BSSID2 = "9c:1c:12:e0:dc:12";
-    $BSSID3 = "9c:1c:12:e0:dc:11";
+    $BSSID1 = "9c:1c:12:99:d5:f0";
+    $BSSID2 = "9c:1c:12:99:d5:f2";
+    $BSSID3 = "9c:1c:12:99:d7:d0";
     /*the three BSSID we wish to show in the signal strenght line graph*/
 
 
